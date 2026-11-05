@@ -1,19 +1,31 @@
 ﻿function renderNav(active){
   const html = `
-  <div class="nav"><div class="container nav-inner">
-    <div class="nav-links">
-      <a href="login.html" class="${active==='login'?'active':''}">ENTRAR</a>
-      <a href="shop.html" class="${active==='shop'?'active':''}">LOJA</a>
-      <a href="faq.html" class="${active==='faq'?'active':''}">PERGUNTAS</a>
+  <div class="nav"><div class="container">
+    <div class="nav-inner">
+      <div class="nav-links desktop-only">
+        <a href="login.html" class="${active==='login'?'active':''}">ENTRAR</a>
+        <a href="shop.html" class="${active==='shop'?'active':''}">LOJA</a>
+        <a href="faq.html" class="${active==='faq'?'active':''}">PERGUNTAS</a>
+      </div>
+      <a href="index.html" class="nav-logo"><img src="assets/img/logo-rm.jpg" alt="Rick And Morty logo"><span>Rick And Morty</span></a>
+      <div class="nav-links desktop-only">
+        <a href="safety.html" class="${active==='safety'?'active':''}">SEGURANÇA</a>
+      </div>
+      <div class="nav-actions" style="display:flex;align-items:center;gap:12px;">
+        <a href="#" class="cart-btn" onclick="openCart(event)" aria-label="Carrinho"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></a>
+        <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu"><i data-lucide="menu"></i></button>
+      </div>
     </div>
-    <a href="index.html" class="nav-logo"><img src="assets/img/logo.jpg" alt="Rick And Morty logo"><span>Rick And Morty</span></a>
-    <div class="nav-links">
-      <a href="safety.html" class="${active==='safety'?'active':''}">SEGURANÇA</a>
-      <a href="#" class="cart-btn" onclick="openCart(event)"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></a>
-    </div>
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="login.html">ENTRAR</a>
+      <a href="shop.html">LOJA</a>
+      <a href="faq.html">PERGUNTAS</a>
+      <a href="safety.html">SEGURANÇA</a>
+    </nav>
   </div></div>`;
   document.body.insertAdjacentHTML("afterbegin", html);
 }
+function toggleMenu(){ document.getElementById("mobileMenu").classList.toggle("open"); }
 function renderFooter(){
   document.body.insertAdjacentHTML("beforeend", `
   <footer><div class="container">
