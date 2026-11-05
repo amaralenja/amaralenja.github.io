@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rick And Morty – Projeto Fictício</title>
+<meta name="description" content="Projeto fictício inspirado na série Como Vender Drogas Online (Rápido). Nada é vendido aqui.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-64.png">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Rick And Morty">
+<meta property="og:description" content="Loja fictícia de pílulas premium. Projeto de fã inspirado em Como Vender Drogas Online (Rápido). Nada é vendido aqui.">
+<meta property="og:image" content="assets/img/logo.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>document.addEventListener("DOMContentLoaded", ()=>{ initCommon("home"); heroCarousel(); });</script>
+
+<section class="hero">
+  <div class="hero-slide active"><img src="assets/img/green-pill.png" alt="Pílula Verde"><div class="hero-overlay"></div><div class="hero-content"><h1>PÍLULA VERDE</h1><p>O DRINQUE FINAL PERFEITO</p><a class="hero-btn" href="product.html?id=green-pill">Ver Detalhes</a></div></div>
+  <div class="hero-slide"><img src="assets/img/speed-racer.png" alt="Corredor Veloz"><div class="hero-overlay"></div><div class="hero-content"><h1>CORREDOR VELOZ</h1><p>ACELERE SUA NOITE</p><a class="hero-btn" href="product.html?id=speed-racer">Ver Detalhes</a></div></div>
+  <div class="hero-slide"><img src="assets/img/white-ghost.png" alt="Fantasma Branco"><div class="hero-overlay"></div><div class="hero-content"><h1>FANTASMA BRANCO</h1><p>DANÇE COM A MORTE</p><a class="hero-btn" href="product.html?id=white-ghost">Ver Detalhes</a></div></div>
+  <div class="hero-slide"><img src="assets/img/violet-star.png" alt="Estrela Violeta"><div class="hero-overlay"></div><div class="hero-content"><h1>ESTRELA VIOLETA</h1><p>ALCANCE AS ESTRELAS</p><a class="hero-btn" href="product.html?id=violet-star">Ver Detalhes</a></div></div>
+  <button class="hero-nav prev" aria-label="Anterior">‹</button>
+  <button class="hero-nav next" aria-label="Próximo">›</button>
+  <div class="hero-dots"><button class="active"></button><button></button><button></button><button></button></div>
+</section>
+
+<section class="section"><div class="container">
+  <h2>Rick And Morty</h2>
+  <p class="lead">Pílulas premium para toda ocasião. Produzidas com precisão e entregues com discrição.</p>
+</section>
+
+<section class="section"><div class="container">
+  <h2>NOSSOS PRODUTOS</h2>
+  <p class="lead">Pílulas premium para toda ocasião. Produzidas com precisão e entregues com discrição.</p>
+  <div class="product-grid" id="grid"></div>
+</section>
+
+<section class="section"><div class="container reveal">
+  <h2>COMO FUNCIONA</h2>
+  <p class="lead">Três passos simples. Sem perguntas.</p>
+  <div class="steps">
+    <div class="step"><h4>Navegue</h4><p>Escolha seu produto no nosso catálogo selecionado.</p></div>
+    <div class="step"><h4>Pague em Cripto</h4><p>BTC ou ETH. Sem cartão, sem rastro.</p></div>
+    <div class="step"><h4>Entrega Discreta</h4><p>Embalagem sem identificação, envio mundial.</p></div>
+  </div>
+</section>
+
+<section class="section"><div class="container reveal">
+  <h2>POR QUE NOS ESCOLHER</h2>
+  <div class="trust">
+    <div class="badge"><i data-lucide="shield-check"></i><h4>Testado em Laboratório</h4><p>Toda partida verificada quanto à pureza.</p></div>
+    <div class="badge"><i data-lucide="truck"></i><h4>Envio Rápido</h4><p>3-7 dias úteis para o mundo todo.</p></div>
+    <div class="badge"><i data-lucide="lock"></i><h4>Criptografado</h4><p>Comunicação segura de ponta a ponta.</p></div>
+    <div class="badge"><i data-lucide="package"></i><h4>Discreto</h4><p>Sem identificação, à prova de violação.</p></div>
+  </div>
+</section>
+
+<section class="section"><div class="container reveal">
+  <h2>O QUE OS CLIENTES DIZEM</h2>
+  <div class="reviews">
+    <div class="review"><div class="stars">★★★★★</div><p>Qualidade top, entrega rápida, zero problemas. Recomendo muito.</p><div class="who">— comprador verificado</div></div>
+    <div class="review"><div class="stars">★★★★☆</div><p>Ótimo produto, embalagem discreta. Vou comprar de novo.</p><div class="who">— comprador verificado</div></div>
+    <div class="review"><div class="stars">★★★★★</div><p>Melhor do mercado. Atendimento ao cliente é responsivo.</p><div class="who">— comprador verificado</div></div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  const grid = document.getElementById("grid");
+  grid.innerHTML = window.PRODUCTS.map(p=>`
+    <div class="product-card reveal">
+      <div class="img"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="body">
+        <h3 class="name">${p.name}</h3>
+        <p class="tag">${p.tag}</p>
+        <div class="rating">${stars(p.rating)} (${p.reviews})</div>
+        <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
+        <a class="btn" href="product.html?id=${p.id}">Ver Detalhes</a>
+      </div>
+    </div>`).join("");
+  const io = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in"); }); }, {threshold:0.1});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+  if(window.lucide) lucide.createIcons();
+});
+</script>
+</body>
+</html>

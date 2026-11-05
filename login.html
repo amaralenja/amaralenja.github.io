@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar – Rick And Morty</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="favicon-64.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>document.addEventListener("DOMContentLoaded", ()=>{ initCommon("login"); });</script>
+
+<div class="login-box">
+  <h1>ENTRAR</h1>
+  <p>Acesse sua conta Rick And Morty.</p>
+  <input type="text" placeholder="Usuário" id="u">
+  <input type="password" placeholder="Senha" id="p">
+  <button onclick="doLogin()">Entrar</button>
+  <p style="margin-top:14px;font-size:12px;opacity:.5;">Este é um projeto fictício. Nenhuma conta real existe.</p>
+</div>
+
+<script>
+function doLogin(){
+  const u = document.getElementById("u").value;
+  alert("Bem-vindo de volta, " + (u||"convidado") + "! (login fictício)");
+}
+</script>
+</body>
+</html>
