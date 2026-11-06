@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loja — Rick And Morty</title>
-<meta name="description" content="Catálogo completo de pílulas Rick And Morty: alívio da dor, auxílio ao sono e energia. Envio discreto e pagamento em cripto.">
+<meta name="description" content="Catálogo completo Rick And Morty: canabis, sintéticos, emagrecedores, remédios e psicodélicos. Envio rápido e pedido direto no WhatsApp.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
@@ -25,17 +25,12 @@
 <div class="page-head"><div class="container">
   <span class="eyebrow"><span class="dot"></span> catálogo completo</span>
   <h1>Nossos produtos</h1>
-  <p>Escolha a sua dimensão. Todos os itens saem em embalagem neutra e são enviados para todo o mundo.</p>
+  <p>Canabis, sintéticos, emagrecedores, remédios e psicodélicos. Escolha os itens e envie o pedido direto no WhatsApp.</p>
 </div></div>
 
 <section class="section" style="padding-top:24px">
   <div class="container">
-    <div class="filter-bar" role="tablist" aria-label="Filtrar por categoria">
-      <button class="filter-btn active" role="tab" aria-selected="true" onclick="filterCat('all', this)">Tudo</button>
-      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Alívio da Dor', this)">Alívio da dor</button>
-      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Auxílio ao Sono', this)">Auxílio ao sono</button>
-      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Energia', this)">Energia</button>
-    </div>
+    <div class="filter-bar" role="tablist" aria-label="Filtrar por categoria" id="filterBar"></div>
     <div class="product-grid" id="grid"></div>
     <p id="empty" style="display:none;color:var(--muted);padding:32px 0;">Nenhum produto nesta categoria por enquanto.</p>
   </div>
@@ -53,7 +48,7 @@ function productCard(p) {
         <h3 class="name">${p.name}</h3>
         <p class="tag">${p.tag}</p>
         <div class="rating">${stars(p.rating)} (${p.reviews})</div>
-        <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
+        <div class="price">${money(p.price)} <span>/ ${p.unit || ""}</span></div>
         <a class="btn" href="product.html?id=${p.id}">Ver detalhes</a>
       </div>
     </div>`;
@@ -75,7 +70,23 @@ function filterCat(cat, btn) {
   if (window.lucide) lucide.createIcons();
 }
 
-document.addEventListener("DOMContentLoaded", () => filterCat("all"));
+function buildFilters() {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return;
+  const count = c => window.PRODUCTS.filter(p => p.category === c).length;
+  bar.innerHTML =
+    `<button class="filter-btn active" role="tab" aria-selected="true" onclick="filterCat('all', this)">Tudo <em>${window.PRODUCTS.length}</em></button>` +
+    (window.CATEGORIES || []).map(c =>
+      `<button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('${c}', this)">${c} <em>${count(c)}</em></button>`
+    ).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildFilters();
+  const cat = new URLSearchParams(location.search).get("cat");
+  const btn = cat ? [...document.querySelectorAll(".filter-btn")].find(b => b.textContent.trim().startsWith(cat)) : null;
+  filterCat(cat && btn ? cat : "all", btn);
+});
 </script>
 </body>
 </html>

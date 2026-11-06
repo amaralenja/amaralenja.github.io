@@ -1,6 +1,10 @@
 ﻿/* ============================================================
-   Rick And Morty — navegação, rodapé, carrinho e checkout
+   Rick And Morty — navegação, rodapé, carrinho e checkout WhatsApp
    ============================================================ */
+
+function waLink(text) {
+  return "https://wa.me/" + window.WHATSAPP + "?text=" + encodeURIComponent(text || "");
+}
 
 function renderNav(active) {
   const link = (href, key, label) =>
@@ -11,15 +15,13 @@ function renderNav(active) {
     <div class="nav-inner">
       <div class="nav-links">
         ${link("shop.html", "shop", "Loja")}
-        ${link("safety.html", "safety", "Segurança")}
-        ${link("faq.html", "faq", "Perguntas")}
       </div>
       <a href="index.html" class="nav-logo" aria-label="Rick And Morty — início">
         <img src="assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
       </a>
       <div class="nav-actions">
-        <a href="login.html" class="cart-btn" aria-label="Entrar" title="Entrar">
-          <i data-lucide="user-round"></i>
+        <a href="${waLink("Olá! Quero fazer um pedido.")}" target="_blank" rel="noopener" class="cart-btn" aria-label="Falar no WhatsApp" title="Falar no WhatsApp">
+          <i data-lucide="message-circle"></i>
         </a>
         <a href="#" class="cart-btn" onclick="openCart(event)" aria-label="Abrir carrinho" title="Carrinho">
           <i data-lucide="shopping-cart"></i><span class="cart-count" style="display:none">0</span>
@@ -32,9 +34,7 @@ function renderNav(active) {
     <nav class="mobile-menu" id="mobileMenu">
       ${link("index.html", "home", "Início")}
       ${link("shop.html", "shop", "Loja")}
-      ${link("safety.html", "safety", "Segurança")}
-      ${link("faq.html", "faq", "Perguntas")}
-      ${link("login.html", "login", "Entrar")}
+      <a href="${waLink("Olá! Quero fazer um pedido.")}" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
   </div></div>`;
 
@@ -54,28 +54,16 @@ function renderFooter() {
     <div class="footer-top">
       <div class="footer-brand">
         <img src="assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
-        <p>Pílulas premium de outro universo. Envio discreto, pagamento em cripto e atendimento em português.</p>
+        <p>Substâncias de outro universo. Envio rápido e atendimento em português.</p>
       </div>
       <div class="footer-col">
         <h5>Loja</h5>
         <a href="shop.html">Todos os produtos</a>
-        <a href="index.html#como-funciona">Como funciona</a>
-        <a href="faq.html">Dúvidas frequentes</a>
-      </div>
-      <div class="footer-col">
-        <h5>Informações</h5>
-        <a href="safety.html">Segurança</a>
-        <a href="privacy.html">Política de privacidade</a>
-        <a href="login.html">Minha conta</a>
+        ${(window.CATEGORIES || []).map(c => `<a href="shop.html?cat=${encodeURIComponent(c)}">${c}</a>`).join("")}
       </div>
     </div>
     <div class="footer-bottom">
       <span>© ${new Date().getFullYear()} Rick And Morty. Todos os direitos reservados.</span>
-      <div class="pay-chips">
-        <span class="pay-chip"><i data-lucide="bitcoin"></i> BTC</span>
-        <span class="pay-chip"><i data-lucide="gem"></i> ETH</span>
-        <span class="pay-chip"><i data-lucide="shield-check"></i> Compra anônima</span>
-      </div>
     </div>
   </div></footer>
 
@@ -99,12 +87,11 @@ function renderFooter() {
         <input class="field" type="text" name="cidade" placeholder="Cidade / Estado" required autocomplete="address-level2">
         <input class="field" type="text" name="cep" placeholder="CEP" required autocomplete="postal-code" inputmode="numeric">
         <input class="field" type="tel" name="telefone" placeholder="Telefone / WhatsApp" required autocomplete="tel">
-        <input class="field" type="email" name="email" placeholder="E-mail (opcional)" autocomplete="email">
         <textarea class="field" name="obs" placeholder="Observações (opcional)"></textarea>
-        <button type="submit" class="btn" style="width:100%">Enviar pedido</button>
+        <button type="submit" class="btn" style="width:100%">Enviar pedido no WhatsApp</button>
       </form>
       <div class="form-status" id="checkoutStatus" hidden></div>
-      <p class="form-note">Compra anônima. Os dados são usados apenas para processar o envio.</p>
+      <p class="form-note" id="checkoutNote">O pedido abre no WhatsApp com todos os itens, o total e o seu endereço já preenchidos.</p>
     </div>
   </div>`);
 }
@@ -119,13 +106,27 @@ function closeCart() { document.getElementById("cartModal").classList.remove("op
 function renderCartLines() {
   const lines = document.getElementById("cartLines");
   const total = document.getElementById("cartTotal");
+  if (!lines || !total) return;
   if (!window.CART.length) {
     lines.innerHTML = "<p style='color:var(--muted)'>Seu carrinho está vazio.</p>";
     total.textContent = "";
     return;
   }
-  lines.innerHTML = window.CART.map(c => `<div class="cart-line"><span>${c.name}</span><span>${c.btc}</span></div>`).join("");
-  total.textContent = "Total: " + window.CART.length + " item(ns)";
+  lines.innerHTML = window.CART.map(c => `
+    <div class="cart-line">
+      <div class="cart-line-info">
+        <span class="cart-line-name">${c.name}</span>
+        <span class="cart-line-unit">${c.unit || ""} · ${money(c.price)}</span>
+      </div>
+      <div class="cart-line-qty">
+        <button type="button" onclick="changeQty('${c.id}', -1)" aria-label="Diminuir">−</button>
+        <span>${c.qty}</span>
+        <button type="button" onclick="changeQty('${c.id}', 1)" aria-label="Aumentar">+</button>
+      </div>
+      <span class="cart-line-price">${money(c.price * c.qty)}</span>
+      <button type="button" class="cart-line-del" onclick="removeFromCart('${c.id}')" aria-label="Remover">×</button>
+    </div>`).join("");
+  total.innerHTML = `<span>Total</span><strong>${money(cartTotal())}</strong>`;
 }
 
 function openCheckout() {
@@ -142,21 +143,25 @@ function closeCheckout() {
   if (form) form.hidden = false;
 }
 
+function lastOrderUrl() { return window.__lastOrderUrl || waLink("Olá! Quero fazer um pedido."); }
+
 function showCheckoutStatus(kind, title, text) {
   const form = document.getElementById("checkoutForm");
   const status = document.getElementById("checkoutStatus");
   if (!form || !status) return;
   form.hidden = true;
   status.hidden = false;
+  const note = document.getElementById("checkoutNote");
+  if (note) note.hidden = true;
   status.className = "form-status " + kind;
   const icon = kind === "ok" ? "party-popper" : "wifi-off";
   status.innerHTML = `
     <i data-lucide="${icon}"></i>
     <h3>${title}</h3>
     <p>${text}</p>
-    <button type="button" class="btn" onclick="${kind === "ok" ? "closeCheckout()" : "retryCheckout()"}">
-      ${kind === "ok" ? "Fechar" : "Tentar de novo"}
-    </button>`;
+    <a class="btn" href="${lastOrderUrl()}" target="_blank" rel="noopener">
+      ${kind === "ok" ? "Abrir WhatsApp" : "Tentar de novo"}
+    </a>`;
   if (window.lucide) lucide.createIcons();
 }
 
@@ -165,50 +170,63 @@ function retryCheckout() {
   const form = document.getElementById("checkoutForm");
   if (status) { status.hidden = true; status.className = "form-status"; status.innerHTML = ""; }
   if (form) form.hidden = false;
+  const note = document.getElementById("checkoutNote");
+  if (note) note.hidden = false;
 }
 
-async function submitOrder(e) {
+function buildOrderText(d) {
+  const itens = window.CART.map(c =>
+    `• ${c.qty}x ${c.name}${c.unit ? " (" + c.unit + ")" : ""} — ${money(c.price * c.qty)}`
+  ).join("\n");
+
+  return [
+    "*NOVO PEDIDO — RICK AND MORTY*",
+    "",
+    "*Itens:*",
+    itens,
+    "",
+    `*Total: ${money(cartTotal())}*`,
+    "",
+    "*Dados de envio:*",
+    `Nome: ${d.nome}`,
+    `Endereço: ${d.endereco}`,
+    `Cidade/UF: ${d.cidade}`,
+    `CEP: ${d.cep}`,
+    `Telefone: ${d.telefone}`,
+    d.obs ? `Observações: ${d.obs}` : "Observações: —"
+  ].join("\n");
+}
+
+function submitOrder(e) {
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
-  const payload = {
+  const d = {
     nome: data.get("nome"),
     endereco: data.get("endereco"),
     cidade: data.get("cidade"),
     cep: data.get("cep"),
     telefone: data.get("telefone"),
-    email: data.get("email"),
-    obs: data.get("obs"),
-    itens: window.CART.map(c => c.name + " (" + c.btc + ")").join(", ")
+    obs: data.get("obs")
   };
-  const btn = form.querySelector("button[type=submit]");
-  const original = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = "Enviando...";
-  try {
-    const endpoint = window.NOTIFY_API || "/api/notify";
-    const r = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    let j = {};
-    try { j = JSON.parse(await r.text()); } catch (_) { j = {}; }
-    if (r.ok && j.ok) {
-      window.CART = [];
-      saveCart();
-      updateCartCount();
-      form.reset();
-      showCheckoutStatus("ok", "Pedido enviado", "Recebemos seus dados e o vendedor já foi avisado. O contato é feito pelo telefone informado.");
-    } else {
-      showCheckoutStatus("err", "Não conseguimos enviar", "Tente novamente em instantes. Seus dados continuam preenchidos aqui.");
-    }
-  } catch (err) {
-    showCheckoutStatus("err", "Falha de conexão", "Verifique sua internet e tente de novo. Seus dados continuam preenchidos aqui.");
-  } finally {
-    btn.disabled = false;
-    btn.textContent = original;
+
+  window.__lastOrderUrl = waLink(buildOrderText(d));
+
+  const win = window.open(window.__lastOrderUrl, "_blank");
+  if (!win) {
+    showCheckoutStatus("err", "Bloqueio de pop-up", "Toque no botão abaixo para abrir o WhatsApp e enviar o pedido.");
+    return;
   }
+
+  window.CART = [];
+  saveCart();
+  updateCartCount();
+  form.reset();
+  showCheckoutStatus(
+    "ok",
+    "Pedido montado",
+    "Se o WhatsApp não abriu, toque no botão abaixo. Só falta enviar a mensagem — respondemos em até 30 minutos."
+  );
 }
 
 function initCommon(active) {
@@ -230,21 +248,4 @@ function initCommon(active) {
   document.querySelectorAll("#mobileMenu a").forEach(a =>
     a.addEventListener("click", () => document.getElementById("mobileMenu")?.classList.remove("open"))
   );
-}
-
-/* Compat: mantido para páginas antigas que ainda chamam o carrossel */
-function heroCarousel() {
-  const slides = document.querySelectorAll(".hero-slide");
-  if (!slides.length) return;
-  const dots = document.querySelectorAll(".hero-dots button");
-  let i = 0;
-  const go = n => {
-    slides.forEach((s, idx) => s.classList.toggle("active", idx === n));
-    dots.forEach((d, idx) => d.classList.toggle("active", idx === n));
-    i = n;
-  };
-  document.querySelector(".hero-nav.next")?.addEventListener("click", () => go((i + 1) % slides.length));
-  document.querySelector(".hero-nav.prev")?.addEventListener("click", () => go((i - 1 + slides.length) % slides.length));
-  dots.forEach((d, idx) => d.addEventListener("click", () => go(idx)));
-  setInterval(() => go((i + 1) % slides.length), 5000);
 }

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Produto — Rick And Morty</title>
-<meta name="description" content="Detalhes do produto, preço em BTC/ETH, avaliações e envio discreto.">
+<meta name="description" content="Detalhes do produto, preço em reais, avaliações e envio rápido.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
@@ -41,7 +41,7 @@ function loadProduct() {
         <p class="tag">${p.tag}</p>
         <div class="rating">${stars(p.rating)} (${p.reviews} avaliações)</div>
         <p class="desc">${p.desc}</p>
-        <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
+        <div class="price">${money(p.price)} <span>/ ${p.unit || ""}</span></div>
         <div class="actions">
           <button class="btn" onclick="addToCart('${p.id}'); openCart(event)">
             <i data-lucide="shopping-bag"></i> Adicionar ao carrinho
@@ -50,7 +50,7 @@ function loadProduct() {
         </div>
         <div class="card" style="margin-top:22px">
           <h3 style="font-size:14px;margin-bottom:10px">Entrega e privacidade</h3>
-          <p style="font-size:13px">Embalagem sem identificação, envio em 3–7 dias úteis e pagamento apenas em BTC ou ETH.</p>
+          <p style="font-size:13px">Envio rápido para todo o Brasil. O pedido é finalizado no WhatsApp, com os itens e o endereço já preenchidos.</p>
         </div>
       </div>
     </div>`;
