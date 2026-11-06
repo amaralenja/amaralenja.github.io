@@ -3,53 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loja – Rick And Morty</title>
+<title>Loja — Rick And Morty</title>
+<meta name="description" content="Catálogo completo de pílulas Rick And Morty: alívio da dor, auxílio ao sono e energia. Envio discreto e pagamento em cripto.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#070b0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 <script src="data.js"></script>
 <script src="main.js"></script>
-<script>document.addEventListener("DOMContentLoaded", ()=>{ initCommon("shop"); });</script>
+<script>document.addEventListener("DOMContentLoaded", () => { initCommon("shop"); });</script>
 
-<section class="section"><div class="container">
-  <h2>NOSSOS PRODUTOS</h2>
-  <p class="lead">Pílulas premium para toda ocasião. Produzidas com precisão e entregues com discrição.</p>
-  <div class="filter-bar">
-    <button class="filter-btn active" data-cat="all" onclick="filterCat('all',this)">Tudo</button>
-    <button class="filter-btn" data-cat="Alívio da Dor" onclick="filterCat('Alívio da Dor',this)">Alívio da Dor</button>
-    <button class="filter-btn" data-cat="Auxílio ao Sono" onclick="filterCat('Auxílio ao Sono',this)">Auxílio ao Sono</button>
-    <button class="filter-btn" data-cat="Energia" onclick="filterCat('Energia',this)">Energia</button>
+<div class="page-head"><div class="container">
+  <span class="eyebrow"><span class="dot"></span> catálogo completo</span>
+  <h1>Nossos produtos</h1>
+  <p>Escolha a sua dimensão. Todos os itens saem em embalagem neutra e são enviados para todo o mundo.</p>
+</div></div>
+
+<section class="section" style="padding-top:24px">
+  <div class="container">
+    <div class="filter-bar" role="tablist" aria-label="Filtrar por categoria">
+      <button class="filter-btn active" role="tab" aria-selected="true" onclick="filterCat('all', this)">Tudo</button>
+      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Alívio da Dor', this)">Alívio da dor</button>
+      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Auxílio ao Sono', this)">Auxílio ao sono</button>
+      <button class="filter-btn" role="tab" aria-selected="false" onclick="filterCat('Energia', this)">Energia</button>
+    </div>
+    <div class="product-grid" id="grid"></div>
+    <p id="empty" style="display:none;color:var(--muted);padding:32px 0;">Nenhum produto nesta categoria por enquanto.</p>
   </div>
-  <div class="product-grid" id="grid"></div>
 </section>
 
 <script>
-function filterCat(cat, btn){
-  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
-  const list = cat==='all'? window.PRODUCTS : window.PRODUCTS.filter(p=>p.category===cat);
-  document.getElementById("grid").innerHTML = list.map(p=>`
+function productCard(p) {
+  return `
     <div class="product-card">
-      <div class="img"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="img">
+        ${p.badge ? `<span class="badge-chip">${p.badge}</span>` : ""}
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      </div>
       <div class="body">
         <h3 class="name">${p.name}</h3>
         <p class="tag">${p.tag}</p>
         <div class="rating">${stars(p.rating)} (${p.reviews})</div>
         <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
-        <a class="btn" href="product.html?id=${p.id}">Ver Detalhes</a>
+        <a class="btn" href="product.html?id=${p.id}">Ver detalhes</a>
       </div>
-    </div>`).join("");
-  if(window.lucide) lucide.createIcons();
+    </div>`;
 }
-document.addEventListener("DOMContentLoaded", ()=>filterCat("all"));
+
+function filterCat(cat, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.remove("active");
+    b.setAttribute("aria-selected", "false");
+  });
+  if (btn) {
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
+  }
+  const list = cat === "all" ? window.PRODUCTS : window.PRODUCTS.filter(p => p.category === cat);
+  document.getElementById("grid").innerHTML = list.map(productCard).join("");
+  const empty = document.getElementById("empty");
+  if (empty) empty.style.display = list.length ? "none" : "block";
+  if (window.lucide) lucide.createIcons();
+}
+
+document.addEventListener("DOMContentLoaded", () => filterCat("all"));
 </script>
 </body>
 </html>

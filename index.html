@@ -3,106 +3,158 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rick And Morty</title>
-<meta name="description" content="Rick And Morty - loja de pílulas premium.">
+<title>Rick And Morty — Pílulas de outro universo</title>
+<meta name="description" content="Rick And Morty: pílulas premium com envio discreto para todo o mundo. Pagamento em BTC ou ETH e atendimento em português.">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="Rick And Morty">
-<meta property="og:description" content="Rick And Morty - loja de pílulas premium.">
-<meta property="og:image" content="assets/img/logo-rm.jpg">
+<meta name="theme-color" content="#070b0d">
+<meta property="og:title" content="Rick And Morty — Pílulas de outro universo">
+<meta property="og:description" content="Pílulas premium com envio discreto. Pagamento em BTC ou ETH.">
+<meta property="og:image" content="assets/img/og-image.jpg">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 <script src="data.js"></script>
 <script src="main.js"></script>
-<script>document.addEventListener("DOMContentLoaded", ()=>{ initCommon("home"); heroCarousel(); });</script>
+<script>document.addEventListener("DOMContentLoaded", () => { initCommon("home"); });</script>
 
-<section class="hero">
-  <div class="hero-slide active"><img src="assets/img/hero-rm.jpg" alt="Portal Rick And Morty"><div class="hero-overlay"></div><div class="hero-content"><h1>RICK AND MORTY</h1><p>UM UNIVERSO DE PÍLULAS</p><a class="hero-btn" href="shop.html">Ver Produtos</a></div></div>
-  <div class="hero-slide"><img src="assets/img/green-pill.png" alt="Pílula Verde"><div class="hero-overlay"></div><div class="hero-content"><h1>PÍLULA VERDE</h1><p>O DRINQUE FINAL PERFEITO</p><a class="hero-btn" href="product.html?id=green-pill">Ver Detalhes</a></div></div>
-  <div class="hero-slide"><img src="assets/img/speed-racer.png" alt="Corredor Veloz"><div class="hero-overlay"></div><div class="hero-content"><h1>CORREDOR VELOZ</h1><p>ACELERE SUA NOITE</p><a class="hero-btn" href="product.html?id=speed-racer">Ver Detalhes</a></div></div>
-  <div class="hero-slide"><img src="assets/img/white-ghost.png" alt="Fantasma Branco"><div class="hero-overlay"></div><div class="hero-content"><h1>FANTASMA BRANCO</h1><p>DANÇE COM A MORTE</p><a class="hero-btn" href="product.html?id=white-ghost">Ver Detalhes</a></div></div>
-  <div class="hero-slide"><img src="assets/img/violet-star.png" alt="Estrela Violeta"><div class="hero-overlay"></div><div class="hero-content"><h1>ESTRELA VIOLETA</h1><p>ALCANCE AS ESTRELAS</p><a class="hero-btn" href="product.html?id=violet-star">Ver Detalhes</a></div></div>
-  <button class="hero-nav prev" aria-label="Anterior">‹</button>
-  <button class="hero-nav next" aria-label="Próximo">›</button>
-  <div class="hero-dots"><button class="active"></button><button></button><button></button><button></button></div>
-</section>
-
-<section class="section"><div class="container">
-  <h2>Rick And Morty</h2>
-  <p class="lead">Pílulas premium para toda ocasião. Produzidas com precisão e entregues com discrição.</p>
-</section>
-
-<section class="section" style="padding:0;"><div class="container" style="padding:0;max-width:100%;">
-  <div style="position:relative;border-radius:0;overflow:hidden;min-height:220px;">
-    <img src="assets/img/hero-space.jpg" alt="Rick And Morty universo" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-    <div style="position:relative;padding:clamp(20px,5vw,64px);background:linear-gradient(180deg,rgba(0,0,0,0.2),rgba(0,0,0,0.7));">
-      <h2 style="font-size:clamp(22px,4vw,36px);font-weight:900;margin:0 0 8px;">Um universo de pílulas</h2>
-      <p style="opacity:.85;max-width:60ch;margin:0 0 14px;">Envio rápido, qualidade garantida e discrição total. Entre no portal.</p>
-      <a class="hero-btn" href="shop.html">Ver Produtos</a>
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> Portal aberto · envio discreto</span>
+        <h1>Pílulas de<br><span class="glow">outro universo</span></h1>
+        <p class="lead">Escolha sua dimensão. Produtos premium, embalagem sem identificação e pagamento em cripto — sem cadastro, sem perguntas.</p>
+        <div class="hero-actions">
+          <a class="btn" href="shop.html"><i data-lucide="rocket"></i> Ver produtos</a>
+          <a class="btn outline" href="#como-funciona">Como funciona</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="assets/img/duo-portal.webp" alt="Rick e Morty atravessando o portal verde" width="1100" height="992" fetchpriority="high">
+      </div>
     </div>
   </div>
-</div></section>
+</header>
 
-<section class="section"><div class="container">
-  <h2>NOSSOS PRODUTOS</h2>
-  <div class="product-grid" id="grid"></div>
-</section>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Envio discreto</span><span>Pagamento em BTC/ETH</span><span>Compra anônima</span><span>Entrega em 3–7 dias</span><span>Suporte em português</span>
+    <span>Envio discreto</span><span>Pagamento em BTC/ETH</span><span>Compra anônima</span><span>Entrega em 3–7 dias</span><span>Suporte em português</span>
+  </div>
+</div>
 
-<section class="section"><div class="container reveal">
-  <h2>COMO FUNCIONA</h2>
-  <p class="lead">Três passos simples. Sem perguntas.</p>
-  <div class="steps">
-    <div class="step"><h4>Navegue</h4><p>Escolha seu produto no nosso catálogo selecionado.</p></div>
-    <div class="step"><h4>Pague em Cripto</h4><p>BTC ou ETH. Sem cartão, sem rastro.</p></div>
-    <div class="step"><h4>Entrega Discreta</h4><p>Embalagem sem identificação, envio mundial.</p></div>
+<section class="section" id="produtos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> catálogo</span>
+      <h2>Nossos produtos</h2>
+      <p class="lead">Quatro fórmulas selecionadas, cada uma para uma viagem diferente.</p>
+    </div>
+    <div class="product-grid" id="grid"></div>
   </div>
 </section>
 
-<section class="section"><div class="container reveal">
-  <h2>POR QUE NOS ESCOLHER</h2>
-  <div class="trust">
-    <div class="badge"><i data-lucide="shield-check"></i><h4>Testado em Laboratório</h4><p>Toda partida verificada quanto à pureza.</p></div>
-    <div class="badge"><i data-lucide="truck"></i><h4>Envio Rápido</h4><p>3-7 dias úteis para o mundo todo.</p></div>
-    <div class="badge"><i data-lucide="lock"></i><h4>Criptografado</h4><p>Comunicação segura de ponta a ponta.</p></div>
-    <div class="badge"><i data-lucide="package"></i><h4>Discreto</h4><p>Sem identificação, à prova de violação.</p></div>
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="banner reveal">
+      <div>
+        <span class="eyebrow"><span class="dot"></span> dimensão C-137</span>
+        <h2>Um universo de pílulas</h2>
+        <p>Qualidade testada, envio rápido e discrição total. Entre no portal e monte seu pedido em menos de dois minutos.</p>
+        <a class="btn" href="shop.html">Explorar a loja</a>
+      </div>
+      <div class="banner-art">
+        <img src="assets/img/rick.webp" alt="Rick Sanchez" width="338" height="900" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section"><div class="container reveal">
-  <h2>O QUE OS CLIENTES DIZEM</h2>
-  <div class="reviews">
-    <div class="review"><div class="stars">★★★★★</div><p>Qualidade top, entrega rápida, zero problemas. Recomendo muito.</p><div class="who">— comprador verificado</div></div>
-    <div class="review"><div class="stars">★★★★☆</div><p>Ótimo produto, embalagem discreta. Vou comprar de novo.</p><div class="who">— comprador verificado</div></div>
-    <div class="review"><div class="stars">★★★★★</div><p>Melhor do mercado. Atendimento ao cliente é responsivo.</p><div class="who">— comprador verificado</div></div>
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> simples assim</span>
+      <h2>Como funciona</h2>
+      <p class="lead">Três passos, nenhuma pergunta.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><h4>Escolha</h4><p>Navegue pelo catálogo e adicione os produtos ao carrinho.</p></div>
+      <div class="step"><h4>Pague em cripto</h4><p>BTC ou ETH. Sem cartão, sem rastro e sem cadastro.</p></div>
+      <div class="step"><h4>Receba</h4><p>Embalagem neutra, sem identificação, em 3 a 7 dias úteis.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> por que a gente</span>
+      <h2>Por que nos escolher</h2>
+    </div>
+    <div class="trust reveal">
+      <div class="badge"><i data-lucide="flask-conical"></i><h4>Testado em laboratório</h4><p>Cada lote é verificado quanto à pureza.</p></div>
+      <div class="badge"><i data-lucide="truck"></i><h4>Envio rápido</h4><p>De 3 a 7 dias úteis para todo o mundo.</p></div>
+      <div class="badge"><i data-lucide="lock"></i><h4>Privacidade total</h4><p>Comunicação criptografada de ponta a ponta.</p></div>
+      <div class="badge"><i data-lucide="package"></i><h4>Discreto</h4><p>Sem identificação e à prova de violação.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> relatos do multiverso</span>
+      <h2>O que dizem por aí</h2>
+    </div>
+    <div class="reviews reveal">
+      <div class="review"><div class="stars">★★★★★</div><p>Qualidade top, entrega rápida e zero problemas. Recomendo demais.</p><div class="who">— comprador verificado</div></div>
+      <div class="review"><div class="stars">★★★★☆</div><p>Produto ótimo e embalagem discreta. Vou comprar de novo.</p><div class="who">— comprador verificado</div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>Melhor do mercado. O atendimento responde na hora.</p><div class="who">— comprador verificado</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-band reveal">
+      <span class="eyebrow"><span class="dot"></span> última chamada</span>
+      <h2>Pronto para atravessar?</h2>
+      <p>Escolha sua pílula, pague em cripto e receba em casa — sem cadastro e sem rastro.</p>
+      <a class="btn" href="shop.html"><i data-lucide="rocket"></i> Começar agora</a>
+    </div>
   </div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("grid");
-  grid.innerHTML = window.PRODUCTS.map(p=>`
-    <div class="product-card">
-      <div class="img"><img src="${p.img}" alt="${p.name}"></div>
-      <div class="body">
-        <h3 class="name">${p.name}</h3>
-        <p class="tag">${p.tag}</p>
-        <div class="rating">${stars(p.rating)} (${p.reviews})</div>
-        <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
-        <a class="btn" href="product.html?id=${p.id}">Ver Detalhes</a>
-      </div>
-    </div>`).join("");
-  const io = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in"); }); }, {threshold:0.1});
-  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-  if(window.lucide) lucide.createIcons();
+  if (grid) {
+    grid.innerHTML = window.PRODUCTS.map(p => `
+      <div class="product-card">
+        <div class="img">
+          ${p.badge ? `<span class="badge-chip">${p.badge}</span>` : ""}
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+        </div>
+        <div class="body">
+          <h3 class="name">${p.name}</h3>
+          <p class="tag">${p.tag}</p>
+          <div class="rating">${stars(p.rating)} (${p.reviews})</div>
+          <div class="price">${p.btc} <span>/ ${p.eth}</span></div>
+          <a class="btn" href="product.html?id=${p.id}">Ver detalhes</a>
+        </div>
+      </div>`).join("");
+  }
+  if (window.lucide) lucide.createIcons();
 });
 </script>
 </body>

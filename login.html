@@ -10,7 +10,9 @@
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="theme-color" content="#070b0d">
 <link rel="stylesheet" href="styles.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -20,18 +22,22 @@
 <script>document.addEventListener("DOMContentLoaded", ()=>{ initCommon("login"); });</script>
 
 <div class="login-box">
-  <h1>ENTRAR</h1>
+  <img src="assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307" style="height:34px;width:auto;margin-bottom:18px">
+  <h1>Entrar</h1>
   <p>Acesse sua conta Rick And Morty.</p>
-  <input type="text" placeholder="Usuário" id="u">
-  <input type="password" placeholder="Senha" id="p">
-  <button onclick="doLogin()">Entrar</button>
-  <p style="margin-top:14px;font-size:12px;opacity:.5;">Acesse sua conta.</p>
+  <form onsubmit="doLogin(event)">
+    <input type="text" placeholder="Usuário" id="u" autocomplete="username">
+    <input type="password" placeholder="Senha" id="p" autocomplete="current-password">
+    <button type="submit">Entrar</button>
+  </form>
+  <p style="margin-top:14px;font-size:12px;">Compra anônima não exige conta — a loja está aberta a todos.</p>
 </div>
 
 <script>
-function doLogin(){
+function doLogin(e) {
+  e.preventDefault();
   const u = document.getElementById("u").value;
-  alert("Bem-vindo de volta, " + (u||"convidado") + "!");
+  alert("Bem-vindo de volta, " + (u || "convidado") + "!");
 }
 </script>
 </body>
