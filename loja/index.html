@@ -15,16 +15,16 @@
 <meta name="theme-color" content="#070b0d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=18">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<script src="/data.js"></script>
-<script src="/main.js"></script>
+<script src="/data.js?v=18"></script>
+<script src="/main.js?v=18"></script>
 <script>document.addEventListener("DOMContentLoaded", () => { initCommon("shop"); });</script>
 
 <div class="page-head"><div class="container">
-  <span class="eyebrow"><span class="dot"></span> catálogo completo</span>
+  <span class="eyebrow"><span class="dot"></span> catálogo completo · <span id="shopTotal">17</span> produtos</span>
   <h1>Nossos produtos</h1>
   <p>Prensado, flores, extrações e sintéticos. Escolha os itens e envie o pedido direto no WhatsApp.</p>
 </div></div>
@@ -82,9 +82,11 @@ function filterCat(cat, btn) {
 function buildFilters() {
   const bar = document.getElementById("filterBar");
   if (!bar) return;
+  const shopTotal = document.getElementById("shopTotal");
+  if (shopTotal) shopTotal.textContent = window.PRODUCTS.length;
   const count = c => window.PRODUCTS.filter(p => p.category === c).length;
   bar.innerHTML =
-    `<button class="filter-btn active" role="tab" aria-selected="true" data-cat="all">Tudo <em>${window.PRODUCTS.length}</em></button>` +
+    `<button class="filter-btn active" role="tab" aria-selected="true" data-cat="all">Todos os produtos <em>${window.PRODUCTS.length}</em></button>` +
     (window.CATEGORIES || []).map(c =>
       `<button class="filter-btn" role="tab" aria-selected="false" data-cat="${c}">${c} <em>${count(c)}</em></button>`
     ).join("");

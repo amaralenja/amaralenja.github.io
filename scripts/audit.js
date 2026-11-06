@@ -1,9 +1,11 @@
 const { chromium } = require("playwright");
 
 const pages = [
-  "index.html",
-  "shop.html",
-  "product.html?id=green-pill",
+  "",
+  "loja/",
+  "produto/px-0-6/",
+  "produto/bala/",
+  "produto/key-10ml/",
   "safety.html",
   "faq.html",
   "login.html",

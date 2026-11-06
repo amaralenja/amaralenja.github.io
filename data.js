@@ -24,7 +24,7 @@ window.PRODUCTS = [
     "badge": "",
     "rating": 4.4,
     "reviews": 18,
-    "img": "assets/img/px-pressed.webp"
+    "img": "assets/img/px-0-6.webp"
   },
   {
     "id": "px-1g",
@@ -37,7 +37,7 @@ window.PRODUCTS = [
     "badge": "Mais vendido",
     "rating": 4.6,
     "reviews": 34,
-    "img": "assets/img/px-pressed.webp"
+    "img": "assets/img/px-1g.webp"
   },
   {
     "id": "12g-comercial",
@@ -59,7 +59,7 @@ window.PRODUCTS = [
     "desc": "Massa de haxixe prensada a frio, 12 g em bloco único. Macia de manusear, rende muito na seda e mantém o aroma de resina.",
     "price": 50,
     "unit": "12 g",
-    "category": "Extrações",
+    "category": "Prensado",
     "badge": "",
     "rating": 4.7,
     "reviews": 22,
@@ -176,7 +176,7 @@ window.PRODUCTS = [
     "desc": "Flor congelada logo depois da colheita para preservar os terpenos. Aroma intenso, buds claros e efeito rápido.",
     "price": 130,
     "unit": "1 g",
-    "category": "Flores",
+    "category": "Extrações",
     "badge": "Novo",
     "rating": 4.9,
     "reviews": 9,
@@ -219,7 +219,7 @@ window.PRODUCTS = [
     "badge": "Clássico",
     "rating": 4.4,
     "reviews": 29,
-    "img": "assets/img/green-pill.webp"
+    "img": "assets/img/bala.webp"
   },
   {
     "id": "key-10ml",

@@ -19,12 +19,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=18">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<script src="/data.js"></script>
-<script src="/main.js"></script>
+<script src="/data.js?v=18"></script>
+<script src="/main.js?v=18"></script>
 <script>document.addEventListener("DOMContentLoaded", () => { initCommon("home"); });</script>
 
 <header class="hero">
@@ -55,9 +55,9 @@
 <section class="section" id="produtos">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow"><span class="dot"></span> catálogo</span>
+      <span class="eyebrow"><span class="dot"></span> catálogo completo · <span id="prodTotal">17</span> produtos</span>
       <h2>Nossos produtos</h2>
-      <p class="lead">Escolha os itens, monte o carrinho e finalize no WhatsApp em menos de dois minutos.</p>
+      <p class="lead">Todos os itens do cardápio, com preço e foto. Monte o carrinho e finalize no WhatsApp em menos de dois minutos.</p>
     </div>
     <div class="product-grid" id="grid"></div>
   </div>
@@ -90,6 +90,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("grid");
+  const total = document.getElementById("prodTotal");
+  if (total) total.textContent = window.PRODUCTS.length;
   if (grid) {
     grid.innerHTML = window.PRODUCTS.map(p => `
       <div class="product-card">
