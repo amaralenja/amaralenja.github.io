@@ -162,6 +162,7 @@ img { max-width: 100%; display: block; }
   margin: 0 0 16px;
 }
 .hero h1 .glow {
+  display: block;
   color: var(--green);
   text-shadow: 0 0 26px rgba(151, 206, 76, 0.55), 0 0 60px rgba(151, 206, 76, 0.25);
 }
