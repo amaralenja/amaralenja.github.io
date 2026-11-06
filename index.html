@@ -1,30 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rick And Morty — Substâncias de outro universo</title>
-<meta name="description" content="Rick And Morty: canabis, sintéticos, emagrecedores e remédios. Envio rápido e pedido direto no WhatsApp.">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
-<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
-<link rel="manifest" href="manifest.json">
+<meta name="description" content="Rick And Morty: prensado, flores, extrações e sintéticos. Envio rápido e pedido direto no WhatsApp.">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#070b0d">
 <meta property="og:title" content="Rick And Morty — Substâncias de outro universo">
-<meta property="og:description" content="Canabis, sintéticos, emagrecedores e remédios. Envio rápido e pedido no WhatsApp.">
-<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:description" content="Prensado, flores, extrações e sintéticos. Envio rápido e pedido no WhatsApp.">
+<meta property="og:image" content="https://amaralenja.github.io/assets/img/og-image.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<script src="data.js"></script>
-<script src="main.js"></script>
+<script src="/data.js"></script>
+<script src="/main.js"></script>
 <script>document.addEventListener("DOMContentLoaded", () => { initCommon("home"); });</script>
 
 <header class="hero">
@@ -33,13 +33,13 @@
       <div>
         <span class="eyebrow"><span class="dot"></span> Aberto · envio rápido</span>
         <h1>Substâncias <span class="glow">de outro universo</span></h1>
-        <p class="lead">Canabis, sintéticos, emagrecedores e remédios. Escolha os itens e envie o pedido direto no WhatsApp.</p>
+        <p class="lead">Prensado, flores, extrações e sintéticos. Escolha os itens e envie o pedido direto no WhatsApp.</p>
         <div class="hero-actions">
-          <a class="btn" href="shop.html"><i data-lucide="rocket"></i> Ver produtos</a>
+          <a class="btn" href="/loja/"><i data-lucide="rocket"></i> Ver produtos</a>
         </div>
       </div>
       <div class="hero-art">
-        <img src="assets/img/duo-portal.webp" alt="Rick e Morty atravessando o portal verde" width="1100" height="992" fetchpriority="high">
+        <img src="/assets/img/duo-portal.webp" alt="Rick e Morty atravessando o portal verde" width="1100" height="992" fetchpriority="high">
       </div>
     </div>
   </div>
@@ -47,8 +47,8 @@
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>Canabis</span><span>Sintéticos</span><span>Emagrecedores</span><span>Remédios</span><span>Psicodélicos</span><span>Envio rápido</span><span>Pedido no WhatsApp</span>
-    <span>Canabis</span><span>Sintéticos</span><span>Emagrecedores</span><span>Remédios</span><span>Psicodélicos</span><span>Envio rápido</span><span>Pedido no WhatsApp</span>
+    <span>Prensado</span><span>Flores</span><span>Extrações</span><span>Sintéticos</span><span>Envio rápido</span><span>Pedido no WhatsApp</span>
+    <span>Prensado</span><span>Flores</span><span>Extrações</span><span>Sintéticos</span><span>Envio rápido</span><span>Pedido no WhatsApp</span>
   </div>
 </div>
 
@@ -67,10 +67,10 @@
   <div class="container">
     <div class="banner reveal">
       <div class="banner-art">
-        <img src="assets/img/rick.webp" alt="Rick Sanchez" width="338" height="900" loading="lazy">
+        <img src="/assets/img/rick.webp" alt="Rick Sanchez" width="338" height="900" loading="lazy">
       </div>
       <div class="banner-side">
-        <a class="btn" href="shop.html"><i data-lucide="maximize-2"></i> Explorar a loja</a>
+        <a class="btn" href="/loja/"><i data-lucide="maximize-2"></i> Explorar a loja</a>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
       <span class="eyebrow"><span class="dot"></span> última chamada</span>
       <h2>Pronto para montar seu pedido?</h2>
       <p>Escolha os itens, preencha o endereço e envie tudo de uma vez no WhatsApp. Respondemos em até 30 minutos.</p>
-      <a class="btn" href="shop.html"><i data-lucide="rocket"></i> Começar agora</a>
+      <a class="btn" href="/loja/"><i data-lucide="rocket"></i> Começar agora</a>
     </div>
   </div>
 </section>
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="tag">${p.tag}</p>
           <div class="rating">${stars(p.rating)} (${p.reviews})</div>
           <div class="price">${money(p.price)} <span>/ ${p.unit || ""}</span></div>
-          <a class="btn" href="product.html?id=${p.id}">Ver detalhes</a>
+          <a class="btn" href="/produto/${p.id}/">Ver detalhes</a>
         </div>
       </div>`).join("");
   }

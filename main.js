@@ -14,10 +14,10 @@ function renderNav(active) {
   <div class="nav"><div class="container">
     <div class="nav-inner">
       <div class="nav-links">
-        ${link("shop.html", "shop", "Loja")}
+        ${link("/loja/", "shop", "Loja")}
       </div>
-      <a href="index.html" class="nav-logo" aria-label="Rick And Morty — início">
-        <img src="assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
+      <a href="/" class="nav-logo" aria-label="Rick And Morty — início">
+        <img src="/assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
       </a>
       <div class="nav-actions">
         <a href="${waLink("Olá! Quero fazer um pedido.")}" target="_blank" rel="noopener" class="cart-btn" aria-label="Falar no WhatsApp" title="Falar no WhatsApp">
@@ -26,26 +26,15 @@ function renderNav(active) {
         <a href="#" class="cart-btn" onclick="openCart(event)" aria-label="Abrir carrinho" title="Carrinho">
           <i data-lucide="shopping-cart"></i><span class="cart-count" style="display:none">0</span>
         </a>
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false" id="menuBtn">
-          <i data-lucide="menu"></i>
-        </button>
       </div>
     </div>
-    <nav class="mobile-menu" id="mobileMenu">
-      ${link("index.html", "home", "Início")}
-      ${link("shop.html", "shop", "Loja")}
-      <a href="${waLink("Olá! Quero fazer um pedido.")}" target="_blank" rel="noopener">WhatsApp</a>
-    </nav>
   </div></div>`;
 
   document.body.insertAdjacentHTML("afterbegin", html);
 }
 
 function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const btn = document.getElementById("menuBtn");
-  const open = menu.classList.toggle("open");
-  if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
+  /* sem menu sanduíche: a navegação fica no ícone de WhatsApp e no carrinho */
 }
 
 function renderFooter() {
@@ -53,13 +42,13 @@ function renderFooter() {
   <footer><div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
+        <img src="/assets/img/logo-rm.webp" alt="Rick And Morty" width="1000" height="307">
         <p>Substâncias de outro universo. Envio rápido e atendimento em português.</p>
       </div>
       <div class="footer-col">
         <h5>Loja</h5>
-        <a href="shop.html">Todos os produtos</a>
-        ${(window.CATEGORIES || []).map(c => `<a href="shop.html?cat=${encodeURIComponent(c)}">${c}</a>`).join("")}
+        <a href="/loja/">Todos os produtos</a>
+        ${(window.CATEGORIES || []).map(c => `<a href="/loja/#${c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")}">${c}</a>`).join("")}
       </div>
     </div>
     <div class="footer-bottom">

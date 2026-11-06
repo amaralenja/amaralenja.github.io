@@ -1,7 +1,7 @@
 ﻿{
   "name": "Rick And Morty",
   "short_name": "RickMorty",
-  "description": "Canabis, sintéticos, emagrecedores, remédios e psicodélicos. Envio rápido e pedido no WhatsApp.",
+  "description": "Prensado, flores, extrações e sintéticos. Envio rápido e pedido no WhatsApp.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

@@ -2,60 +2,16 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Produto — Rick And Morty</title>
-<meta name="description" content="Detalhes do produto, preço em reais, avaliações e envio rápido.">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
-<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#070b0d">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+(function () {
+  var id = new URLSearchParams(location.search).get("id") || "";
+  var ok = /^[a-z0-9-]+$/i.test(id);
+  location.replace(ok ? "/produto/" + id + "/" : "/loja/");
+})();
+</script>
 </head>
 <body>
-<script src="data.js"></script>
-<script src="main.js"></script>
-<script>document.addEventListener("DOMContentLoaded", () => { initCommon("shop"); loadProduct(); });</script>
-
-<section class="section" style="padding-top:clamp(28px,4vw,48px)"><div class="container" id="detail"></div></section>
-
-<script>
-function loadProduct() {
-  const id = new URLSearchParams(location.search).get("id");
-  const p = window.PRODUCTS.find(x => x.id === id) || window.PRODUCTS[0];
-  document.title = p.name + " — Rick And Morty";
-  document.getElementById("detail").innerHTML = `
-    <nav class="crumbs" aria-label="Você está aqui">
-      <a href="index.html">Início</a><span>/</span><a href="shop.html">Loja</a><span>/</span><em style="font-style:normal;color:var(--text)">${p.name}</em>
-    </nav>
-    <div class="detail">
-      <div class="img"><img src="${p.img}" alt="${p.name}" fetchpriority="high"></div>
-      <div>
-        <span class="eyebrow"><span class="dot"></span> ${p.category}</span>
-        <h1>${p.name}</h1>
-        <p class="tag">${p.tag}</p>
-        <div class="rating">${stars(p.rating)} (${p.reviews} avaliações)</div>
-        <p class="desc">${p.desc}</p>
-        <div class="price">${money(p.price)} <span>/ ${p.unit || ""}</span></div>
-        <div class="actions">
-          <button class="btn" onclick="addToCart('${p.id}'); openCart(event)">
-            <i data-lucide="shopping-bag"></i> Adicionar ao carrinho
-          </button>
-          <a class="btn outline" href="shop.html">Voltar à loja</a>
-        </div>
-        <div class="card" style="margin-top:22px">
-          <h3 style="font-size:14px;margin-bottom:10px">Entrega e privacidade</h3>
-          <p style="font-size:13px">Envio rápido para todo o Brasil. O pedido é finalizado no WhatsApp, com os itens e o endereço já preenchidos.</p>
-        </div>
-      </div>
-    </div>`;
-  if (window.lucide) lucide.createIcons();
-}
-</script>
+<p>Redirecionando para <a href="/loja/">a loja</a>.</p>
 </body>
 </html>

@@ -1,168 +1,238 @@
-﻿/* ============================================================
-   Rick And Morty — catálogo (preços em R$)
-   5 linhas: Canabis · Sintéticos · Emagrecedores · Remédios · Psicodélicos
+/* ============================================================
+   Rick And Morty — catálogo
+   ARQUIVO GERADO PELO PAINEL (_admin/server.js) — não edite à mão
    ============================================================ */
 
 window.WHATSAPP = "5551981981089";
 
-window.CATEGORIES = ["Canabis", "Sintéticos", "Emagrecedores", "Remédios", "Psicodélicos"];
+window.CATEGORIES = [
+  "Prensado",
+  "Flores",
+  "Extrações",
+  "Sintéticos"
+];
 
 window.PRODUCTS = [
   {
-    id: "bud",
-    name: "GRAMA DO RICK",
-    tag: "COLHEITA DA C-137",
-    rating: 4.7,
-    reviews: 8,
-    price: 150,
-    unit: "1 g",
-    desc: "Flor cultivada indoor, curada por 60 dias e trimada à mão. Aroma cítrico com fundo terroso, buds densos e cobertos de tricomas. Chega prensada a vácuo, dentro de um pote opaco — sem cheiro e sem identificação.",
-    img: "assets/img/bud.webp",
-    category: "Canabis",
-    badge: "Colheita nova"
+    "id": "px-0-6",
+    "name": "PX 0.6",
+    "tag": "PRENSADO · 0,6 G",
+    "desc": "Prensado em porção de 0,6 g. Textura firme, queima lenta e efeito encorpado. Vai em embalagem selada, sem cheiro externo e sem identificação.",
+    "price": 30,
+    "unit": "0,6 g",
+    "category": "Prensado",
+    "badge": "",
+    "rating": 4.4,
+    "reviews": 18,
+    "img": "assets/img/px-pressed.webp"
   },
   {
-    id: "vape",
-    name: "CANETA DO MORTY",
-    tag: "SEM FUMAÇA, SEM CHEIRO",
-    rating: 4.6,
-    reviews: 6,
-    price: 220,
-    unit: "0,5 ml",
-    desc: "Óleo de espectro completo em cartucho descartável, com 0,5 ml de extrato purificado. Puxada suave, efeito em menos de dois minutos e nenhum cheiro no ambiente. Ideal para quem precisa de discrição total.",
-    img: "assets/img/vape.webp",
-    category: "Canabis",
-    badge: "Sem cheiro"
+    "id": "px-1g",
+    "name": "PX 1g",
+    "tag": "PRENSADO · 1 G",
+    "desc": "O mesmo prensado em 1 g, prensado a quente e guardado no escuro para preservar o aroma. Rende bem e mantém a chama acesa até o fim.",
+    "price": 50,
+    "unit": "1 g",
+    "category": "Prensado",
+    "badge": "Mais vendido",
+    "rating": 4.6,
+    "reviews": 34,
+    "img": "assets/img/px-pressed.webp"
   },
   {
-    id: "green-pill",
-    name: "PÍLULA VERDE",
-    tag: "O DRINQUE FINAL PERFEITO",
-    rating: 4.5,
-    reviews: 12,
-    price: 90,
-    unit: "10 un",
-    desc: "Ótima qualidade por um preço acessível. Recomendada para encontros sociais, esta pílula verde dá a sensação de álcool sem a ressaca. Experiência pura, limpa e de alta qualidade garantida.",
-    img: "assets/img/green-pill.webp",
-    category: "Remédios",
-    badge: "Clássico"
+    "id": "12g-comercial",
+    "name": "12g Comercial",
+    "tag": "PRENSADO COMERCIAL",
+    "desc": "Bloco comercial de 12 g, para quem fuma bastante na semana. Chega prensado a vácuo, dentro de embalagem opaca e sem odor.",
+    "price": 40,
+    "unit": "12 g",
+    "category": "Prensado",
+    "badge": "Custo-benefício",
+    "rating": 4.3,
+    "reviews": 41,
+    "img": "assets/img/comercial-brick.webp"
   },
   {
-    id: "speed-racer",
-    name: "CORREDOR VELOZ",
-    tag: "ACELERE SUA NOITE",
-    rating: 5.0,
-    reviews: 15,
-    price: 130,
-    unit: "10 un",
-    desc: "O Corredor Veloz é nossa opção premium para quem quer ir de 0 a 100 em segundos. Sinta um rush como dirigir um carro esportivo, com efeitos que duram até 6 horas. Contém 80 mg de energia pura por pílula.",
-    img: "assets/img/speed-racer.webp",
-    category: "Remédios",
-    badge: "Mais vendido"
+    "id": "12g-massa",
+    "name": "12g Massa",
+    "tag": "MASSA DE HAXIXE",
+    "desc": "Massa de haxixe prensada a frio, 12 g em bloco único. Macia de manusear, rende muito na seda e mantém o aroma de resina.",
+    "price": 50,
+    "unit": "12 g",
+    "category": "Extrações",
+    "badge": "",
+    "rating": 4.7,
+    "reviews": 22,
+    "img": "assets/img/massa-hash.webp"
   },
   {
-    id: "crystal",
-    name: "CRISTAL C-137",
-    tag: "PUREZA DE LABORATÓRIO",
-    rating: 4.9,
-    reviews: 9,
-    price: 280,
-    unit: "1 g",
-    desc: "Cristal sintético de grau laboratorial, 98% de pureza verificada por reagente. Efeito limpo, subida rápida e sem o residual de lote sujo. Vendido em porções seladas de 1 g com lacre inviolável.",
-    img: "assets/img/crystal.webp",
-    category: "Sintéticos",
-    badge: "Puro"
+    "id": "flor-orange",
+    "name": "Flor Orange",
+    "tag": "AROMA CÍTRICO",
+    "desc": "Flor de cultivo outdoor com tons alaranjados e cheiro cítrico. Buds densos, trimados à mão e com queima uniforme.",
+    "price": 35,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "",
+    "rating": 4.5,
+    "reviews": 13,
+    "img": "assets/img/flor-orange.webp"
   },
   {
-    id: "white-ghost",
-    name: "FANTASMA BRANCO",
-    tag: "DANÇE COM A MORTE",
-    rating: 4.8,
-    reviews: 11,
-    price: 190,
-    unit: "10 un",
-    desc: "Não é para os fracos. O Fantasma Branco entrega uma experiência de outro mundo que leva você ao limite e de volta. Nossa fórmula mais forte, apenas para usuários experientes. Transcendência pura em forma de pílula.",
-    img: "assets/img/white-ghost.webp",
-    category: "Remédios",
-    badge: "Mais forte"
+    "id": "colombia-gold",
+    "name": "Colômbia Gold",
+    "tag": "CLÁSSICA DOURADA",
+    "desc": "A clássica dourada, curada devagar até as folhas amarelarem. Aroma doce, fumaça suave e efeito tranquilo.",
+    "price": 35,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "",
+    "rating": 4.4,
+    "reviews": 26,
+    "img": "assets/img/flor-gold.webp"
   },
   {
-    id: "blotter",
-    name: "SELO DO PORTAL",
-    tag: "MICRODOSE E VISÃO",
-    rating: 4.4,
-    reviews: 7,
-    price: 160,
-    unit: "25 selos",
-    desc: "Cartela de 25 selos perfurados, dosagem uniforme e aplicada por imersão — cada quadrado carrega exatamente a mesma quantidade. Corte pela perfuração, deixe sob a língua e espere 30 minutos. A cartela viaja plana e protegida da luz.",
-    img: "assets/img/blotter.webp",
-    category: "Psicodélicos",
-    badge: "Microdose"
+    "id": "flor-mango-juice",
+    "name": "Flor Mango Juice",
+    "tag": "GENÉTICA TROPICAL",
+    "desc": "Genética tropical com aroma de manga madura e buds compactos. Uma das favoritas para o fim de tarde.",
+    "price": 75,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "",
+    "rating": 4.7,
+    "reviews": 11,
+    "img": "assets/img/flor-mango.webp"
   },
   {
-    id: "violet-star",
-    name: "ESTRELA VIOLETA",
-    tag: "ALCANCE AS ESTRELAS",
-    rating: 4.9,
-    reviews: 10,
-    price: 175,
-    unit: "10 un",
-    desc: "Nossa pílula violeta premium em formato de estrela, criada para elevar sua criatividade e consciência espiritual. Desbloqueie seu universo interior e conecte-se com a energia cósmica. Experiência artística e insights profundos.",
-    img: "assets/img/violet-star.webp",
-    category: "Psicodélicos",
-    badge: "Novo"
+    "id": "flor-24k",
+    "name": "Flor 24k Hidroponica",
+    "tag": "CULTIVO INDOOR",
+    "desc": "Cultivo hidropônico indoor, buds verdes e cobertos de cristais. Teor alto de resina, sabor limpo e efeito rápido.",
+    "price": 75,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "Premium",
+    "rating": 4.9,
+    "reviews": 19,
+    "img": "assets/img/flor-24k.webp"
   },
   {
-    id: "pen",
-    name: "SLIM QUÂNTICO",
-    tag: "PERCA PESO SEM SAIR DE CASA",
-    rating: 4.8,
-    reviews: 21,
-    price: 420,
-    unit: "caneta",
-    desc: "Caneta semanal de dose fixa, com aplicação subcutânea indolor. Reduz o apetite, desacelera o esvaziamento gástrico e mantém o resultado estável durante o tratamento. Acompanha 4 agulhas ultrafinas e instruções em português — sem receita.",
-    img: "assets/img/pen.webp",
-    category: "Emagrecedores",
-    badge: "Alta procura"
+    "id": "flor-vanilla-cake",
+    "name": "Flor Vanilla Cake Hidroponica",
+    "tag": "DOCE E CREMOSA",
+    "desc": "Flor clara, densa e adocicada, com fundo de baunilha. Trimada à mão e curada por 30 dias antes de sair.",
+    "price": 75,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "",
+    "rating": 4.8,
+    "reviews": 15,
+    "img": "assets/img/flor-vanilla.webp"
   },
   {
-    id: "hash",
-    name: "HAXIXE DO PORTAL",
-    tag: "EXTRAÇÃO ARTESANAL",
-    rating: 4.8,
-    reviews: 14,
-    price: 180,
-    unit: "5 g",
-    desc: "Extração artesanal prensada a frio, textura macia e aroma intenso de resina. Rendimento alto, queima lenta e efeito prolongado. Vem em bloco único, embalado a vácuo e sem odor externo.",
-    img: "assets/img/hash.webp",
-    category: "Canabis",
-    badge: "Artesanal"
+    "id": "dry",
+    "name": "Dry",
+    "tag": "EXTRAÇÃO SECA",
+    "desc": "Extração seca de tricomas, pó dourado e uniforme. Fácil de dosar e ótima para misturar com a flor.",
+    "price": 65,
+    "unit": "1 g",
+    "category": "Extrações",
+    "badge": "",
+    "rating": 4.6,
+    "reviews": 16,
+    "img": "assets/img/dry.webp"
   },
   {
-    id: "drops",
-    name: "ELIXIR C-137",
-    tag: "GOTAS SUBLINGUAIS",
-    rating: 4.6,
-    reviews: 9,
-    price: 190,
-    unit: "30 ml",
-    desc: "Óleo sublingual de dose controlada, com conta-gotas graduado. Duas gotas sob a língua e o efeito começa em 15 minutos, sem fumaça e sem cheiro. Frasco de vidro âmbar, protegido da luz.",
-    img: "assets/img/drops.webp",
-    category: "Remédios",
-    badge: "Dose controlada"
+    "id": "ice-melt",
+    "name": "Ice Melt",
+    "tag": "EXTRAÇÃO NO GELO",
+    "desc": "Extração feita com gelo e água, textura de massa clara. Derrete fácil, tem sabor limpo e sobe rápido.",
+    "price": 120,
+    "unit": "1 g",
+    "category": "Extrações",
+    "badge": "Destaque",
+    "rating": 4.9,
+    "reviews": 20,
+    "img": "assets/img/ice-melt.webp"
   },
   {
-    id: "mush",
-    name: "ESPORO GALÁTICO",
-    tag: "VIAGEM DE 4 HORAS",
-    rating: 4.9,
-    reviews: 17,
-    price: 200,
-    unit: "5 g",
-    desc: "Cogumelos desidratados inteiros, secos em baixa temperatura para preservar a potência. Viagem visual de cerca de 4 horas, com sensação de euforia e cores intensas. Acompanha guia de dosagem.",
-    img: "assets/img/mush.webp",
-    category: "Psicodélicos",
-    badge: "Potente"
+    "id": "ice-nug",
+    "name": "Ice Nug",
+    "tag": "CONCENTRADO FORTE",
+    "desc": "Pedaço concentrado de extração no gelo, escuro e oleoso. Uma das opções mais fortes do cardápio — dose baixa.",
+    "price": 120,
+    "unit": "1 g",
+    "category": "Extrações",
+    "badge": "",
+    "rating": 4.8,
+    "reviews": 12,
+    "img": "assets/img/ice-nug.webp"
+  },
+  {
+    "id": "fresh-frozen",
+    "name": "Fresh Frozen",
+    "tag": "FLOR CONGELADA",
+    "desc": "Flor congelada logo depois da colheita para preservar os terpenos. Aroma intenso, buds claros e efeito rápido.",
+    "price": 130,
+    "unit": "1 g",
+    "category": "Flores",
+    "badge": "Novo",
+    "rating": 4.9,
+    "reviews": 9,
+    "img": "assets/img/fresh-frozen.webp"
+  },
+  {
+    "id": "md-coca",
+    "name": "Md Coca",
+    "tag": "CRISTAL · 1 G",
+    "desc": "Cristal branco em pó fino, 1 g em sachê selado. Produto para maiores de 18 anos.",
+    "price": 65,
+    "unit": "1 g",
+    "category": "Sintéticos",
+    "badge": "",
+    "rating": 4.5,
+    "reviews": 14,
+    "img": "assets/img/md-coca.webp"
+  },
+  {
+    "id": "md-champanhe",
+    "name": "Md Champanhe",
+    "tag": "CRISTAL · 1 G",
+    "desc": "Versão champanhe do MD, cristais claros com brilho perolado. Mesma dosagem, aroma mais suave.",
+    "price": 70,
+    "unit": "1 g",
+    "category": "Sintéticos",
+    "badge": "",
+    "rating": 4.6,
+    "reviews": 10,
+    "img": "assets/img/md-champanhe.webp"
+  },
+  {
+    "id": "bala",
+    "name": "Bala",
+    "tag": "COMPRIMIDO · UNIDADE",
+    "desc": "Comprimido prensado, vendido por unidade. Efeito longo e sensação de euforia — use com companhia e água por perto.",
+    "price": 40,
+    "unit": "un",
+    "category": "Sintéticos",
+    "badge": "Clássico",
+    "rating": 4.4,
+    "reviews": 29,
+    "img": "assets/img/green-pill.webp"
+  },
+  {
+    "id": "key-10ml",
+    "name": "Key 10ml",
+    "tag": "FRASCO 10 ML",
+    "desc": "Frasco de 10 ml com conta-gotas. Líquido incolor, dosagem por gota — comece sempre pela dose baixa.",
+    "price": 135,
+    "unit": "10 ml",
+    "category": "Sintéticos",
+    "badge": "",
+    "rating": 4.7,
+    "reviews": 8,
+    "img": "assets/img/key-10ml.webp"
   }
 ];
 
@@ -201,7 +271,10 @@ function changeQty(id, delta) {
 
 function cartCount() { return window.CART.reduce((s, c) => s + c.qty, 0); }
 function cartTotal() { return window.CART.reduce((s, c) => s + c.price * c.qty, 0); }
-function money(v) { return "R$ " + Number(v).toFixed(2).replace(".", ","); }
+function money(v) {
+  const n = Number(v);
+  return "R$ " + (Number.isInteger(n) ? n.toFixed(0) : n.toFixed(2).replace(".", ","));
+}
 
 function updateCartCount() {
   const el = document.querySelector(".cart-count");

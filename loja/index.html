@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loja — Rick And Morty</title>
+<meta name="description" content="Catálogo completo Rick And Morty: prensado, flores, extrações e sintéticos. Envio rápido e pedido no WhatsApp.">
+<link rel="canonical" href="https://amaralenja.github.io/loja/">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#070b0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+<script src="/data.js"></script>
+<script src="/main.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => { initCommon("shop"); });</script>
+
+<div class="page-head"><div class="container">
+  <span class="eyebrow"><span class="dot"></span> catálogo completo</span>
+  <h1>Nossos produtos</h1>
+  <p>Prensado, flores, extrações e sintéticos. Escolha os itens e envie o pedido direto no WhatsApp.</p>
+</div></div>
+
+<section class="section" style="padding-top:24px">
+  <div class="container">
+    <div class="filter-bar" role="tablist" aria-label="Filtrar por categoria" id="filterBar"></div>
+    <div class="product-grid" id="grid"></div>
+    <p id="empty" style="display:none;color:var(--muted);padding:32px 0;">Nenhum produto nesta categoria por enquanto.</p>
+  </div>
+</section>
+
+<script>
+function productCard(p) {
+  return `
+    <div class="product-card">
+      <div class="img">
+        ${p.badge ? `<span class="badge-chip">${p.badge}</span>` : ""}
+        <img src="/${p.img}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="body">
+        <h3 class="name">${p.name}</h3>
+        <p class="tag">${p.tag}</p>
+        <div class="rating">${stars(p.rating)} (${p.reviews})</div>
+        <div class="price">${money(p.price)} <span>/ ${p.unit || ""}</span></div>
+        <a class="btn" href="/produto/${p.id}/">Ver detalhes</a>
+      </div>
+    </div>`;
+}
+
+function slugify(s) {
+  return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.remove("active");
+    b.setAttribute("aria-selected", "false");
+  });
+  if (btn) {
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
+  }
+  const list = cat === "all" ? window.PRODUCTS : window.PRODUCTS.filter(p => p.category === cat);
+  document.getElementById("grid").innerHTML = list.map(productCard).join("");
+  const empty = document.getElementById("empty");
+  if (empty) empty.style.display = list.length ? "none" : "block";
+  if (window.lucide) lucide.createIcons();
+
+  const path = cat === "all" ? "/loja/" : "/loja/#" + slugify(cat);
+  if (location.pathname + location.hash !== path) history.replaceState(null, "", path);
+}
+
+function buildFilters() {
+  const bar = document.getElementById("filterBar");
+  if (!bar) return;
+  const count = c => window.PRODUCTS.filter(p => p.category === c).length;
+  bar.innerHTML =
+    `<button class="filter-btn active" role="tab" aria-selected="true" data-cat="all">Tudo <em>${window.PRODUCTS.length}</em></button>` +
+    (window.CATEGORIES || []).map(c =>
+      `<button class="filter-btn" role="tab" aria-selected="false" data-cat="${c}">${c} <em>${count(c)}</em></button>`
+    ).join("");
+
+  bar.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => filterCat(btn.dataset.cat, btn));
+  });
+}
+
+function applyFromHash() {
+  const h = decodeURIComponent(location.hash.replace(/^#/, ""));
+  const cat = (window.CATEGORIES || []).find(c => slugify(c) === h);
+  const btn = cat ? document.querySelector('.filter-btn[data-cat="' + cat + '"]') : null;
+  filterCat(cat || "all", btn);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  buildFilters();
+  applyFromHash();
+  window.addEventListener("hashchange", applyFromHash);
+});
+</script>
+</body>
+</html>
