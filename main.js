@@ -153,7 +153,8 @@ async function submitOrder(e) {
   btn.disabled = true;
   btn.textContent = "Enviando...";
   try {
-    const r = await fetch("/api/notify", {
+    const endpoint = window.NOTIFY_API || "/api/notify";
+    const r = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
