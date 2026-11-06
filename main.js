@@ -103,6 +103,7 @@ function renderFooter() {
         <textarea class="field" name="obs" placeholder="Observações (opcional)"></textarea>
         <button type="submit" class="btn" style="width:100%">Enviar pedido</button>
       </form>
+      <div class="form-status" id="checkoutStatus" hidden></div>
       <p class="form-note">Compra anônima. Os dados são usados apenas para processar o envio.</p>
     </div>
   </div>`);
@@ -130,9 +131,41 @@ function renderCartLines() {
 function openCheckout() {
   if (!window.CART.length) { alert("Seu carrinho está vazio."); return; }
   closeCart();
+  retryCheckout();
   document.getElementById("checkoutModal").classList.add("open");
 }
-function closeCheckout() { document.getElementById("checkoutModal").classList.remove("open"); }
+function closeCheckout() {
+  document.getElementById("checkoutModal").classList.remove("open");
+  const status = document.getElementById("checkoutStatus");
+  const form = document.getElementById("checkoutForm");
+  if (status) { status.hidden = true; status.innerHTML = ""; }
+  if (form) form.hidden = false;
+}
+
+function showCheckoutStatus(kind, title, text) {
+  const form = document.getElementById("checkoutForm");
+  const status = document.getElementById("checkoutStatus");
+  if (!form || !status) return;
+  form.hidden = true;
+  status.hidden = false;
+  status.className = "form-status " + kind;
+  const icon = kind === "ok" ? "party-popper" : "wifi-off";
+  status.innerHTML = `
+    <i data-lucide="${icon}"></i>
+    <h3>${title}</h3>
+    <p>${text}</p>
+    <button type="button" class="btn" onclick="${kind === "ok" ? "closeCheckout()" : "retryCheckout()"}">
+      ${kind === "ok" ? "Fechar" : "Tentar de novo"}
+    </button>`;
+  if (window.lucide) lucide.createIcons();
+}
+
+function retryCheckout() {
+  const status = document.getElementById("checkoutStatus");
+  const form = document.getElementById("checkoutForm");
+  if (status) { status.hidden = true; status.className = "form-status"; status.innerHTML = ""; }
+  if (form) form.hidden = false;
+}
 
 async function submitOrder(e) {
   e.preventDefault();
@@ -164,14 +197,14 @@ async function submitOrder(e) {
     if (r.ok && j.ok) {
       window.CART = [];
       saveCart();
-      closeCheckout();
+      updateCartCount();
       form.reset();
-      alert("Pedido enviado! O vendedor foi notificado.");
+      showCheckoutStatus("ok", "Pedido enviado", "Recebemos seus dados e o vendedor já foi avisado. O contato é feito pelo telefone informado.");
     } else {
-      alert("Não conseguimos enviar o pedido agora. Tente novamente em instantes ou fale com o suporte.");
+      showCheckoutStatus("err", "Não conseguimos enviar", "Tente novamente em instantes. Seus dados continuam preenchidos aqui.");
     }
   } catch (err) {
-    alert("Falha de conexão ao enviar o pedido. Verifique sua internet e tente de novo.");
+    showCheckoutStatus("err", "Falha de conexão", "Verifique sua internet e tente de novo. Seus dados continuam preenchidos aqui.");
   } finally {
     btn.disabled = false;
     btn.textContent = original;
