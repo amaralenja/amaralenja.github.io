@@ -1,1 +1,5 @@
-.vercel
+﻿screenshots/
+node_modules/
+.vercel/
+.env
+.env.local
